@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.Button;
 
 public class InitialActivity extends AppCompatActivity {
-    Button customer_button;
+    Button customer_button,technician_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +19,7 @@ public class InitialActivity extends AppCompatActivity {
 
 
         customer_button=findViewById(R.id.customer_button);
+        technician_button=findViewById(R.id.technician);
 
         customer_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -27,6 +28,15 @@ public class InitialActivity extends AppCompatActivity {
              startActivity(new Intent(InitialActivity.this,LogInActivity.class));
             }
         });
+
+        technician_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                startActivity(new Intent(InitialActivity.this,TechnicianLoginActivity.class));
+            }
+        });
+
     }
 
 

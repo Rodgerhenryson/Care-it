@@ -1,9 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@android:color/white"
     android:layout_height="match_parent"
-    tools:context=".TechnicianLoginActivity">
+    tools:context=".LogInActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:scaleType="centerInside"
+            android:layout_margin="20dp"
+            android:layout_gravity="center"
+            android:src="@drawable/icon"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"/>
+        <TextView
+            android:text="@string/mobile_number"
+            android:textSize="18sp"
+            android:textColor="@color/secondary_text_light"
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+        <EditText
+            android:id="@+id/username"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:textSize="16sp"
+            android:layout_margin="10dp"
+            android:background="@drawable/imageborder"
+            android:textColor="@android:color/black"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:inputType="number"/>
+        <TextView
+            android:text="@string/password"
+            android:textSize="18sp"
+            android:textColor="@color/secondary_text_light"
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_margin="10dp"
+            android:textSize="16sp"
+            android:background="@drawable/imageborder"
+            android:textColor="@android:color/black"
+            android:inputType="textPassword"/>
+
+        <Button
+            android:id="@+id/technician_logIn_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/buttonshape"
+            android:text="@string/login"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            />
+
+
+    </LinearLayout>
+</ScrollView>

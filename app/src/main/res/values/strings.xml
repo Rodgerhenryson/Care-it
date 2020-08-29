@@ -18,4 +18,7 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="phone">Phone</string>
     <string name="email">Email</string>
+    <string name="tech">Technician LogIn</string>
+    <string name="your_history_request">Jobs Queue</string>
+    <string name="your_queue_history_not_availbale">No Data For your Jobs Queue</string>
 </resources>

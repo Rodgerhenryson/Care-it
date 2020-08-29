@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="@string/your_history_not_availbale"
+        android:text="@string/your_queue_history_not_availbale"
         android:textAllCaps="false"/>
 
 

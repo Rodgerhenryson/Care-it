@@ -18,7 +18,7 @@ public class TechnicianJobsHistoryActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setTitle(R.string.your_history);
+            getSupportActionBar().setTitle(R.string.your_history_request);
         }
 
     }
