@@ -18,7 +18,7 @@
             android:layout_gravity="center"
             android:src="@drawable/icon"
             android:layout_width="match_parent"
-            android:layout_height="200dp"/>
+            android:layout_height="100dp"/>
         <TextView
             android:text="@string/mobile_number"
             android:textSize="18sp"

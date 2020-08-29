@@ -9,4 +9,13 @@
     <string name="mobile_number">Mobile Number</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
+    <string name="upload_item">Upload Item</string>
+    <string name="your_history">Your History List</string>
+    <string name="add_new_item">Add New Item</string>
+    <string name="your_history_not_availbale">"No Data For Your  Repair History "</string>
+    <string name="submit">Submit</string>
+    <string name="already_have_an_account">Already Have An Account</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="phone">Phone</string>
+    <string name="email">Email</string>
 </resources>
