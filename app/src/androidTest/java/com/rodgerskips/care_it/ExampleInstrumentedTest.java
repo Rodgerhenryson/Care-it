@@ -1,4 +1,4 @@
-package com.example.care_it;
+package com.rodgerskips.care_it;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.example.care_it", appContext.getPackageName());
+        assertEquals("com.rodgerskips.care_it", appContext.getPackageName());
     }
 }

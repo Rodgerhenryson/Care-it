@@ -88,7 +88,7 @@
                 android:textColorHint="@android:color/black"
                 android:textSize="20sp"
                 android:textColor="@android:color/black"
-                android:hint="Password"
+                android:hint="@string/password"
                 android:inputType="textPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>

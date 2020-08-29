@@ -1,4 +1,4 @@
-package com.example.care_it;
+package com.rodgerskips.care_it;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;

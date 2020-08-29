@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.care_it">
+    package="com.rodgerskips.care_it">
 
     <application
         android:allowBackup="true"
@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CustomerHistoryActivity"></activity>
+        <activity android:name=".TechnicianLoginActivity"></activity>
+        <activity android:name=".TechnicianJobsHistoryActivity"></activity>
+        <activity android:name=".CustomerHistoryActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LogInActivity" />
         <activity android:name=".CustomerUploadActivity" />

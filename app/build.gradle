@@ -5,7 +5,7 @@ android {
     buildToolsVersion "30.0.2"
 
     defaultConfig {
-        applicationId "com.example.care_it"
+        applicationId "com.rodgerskips.care_it"
         minSdkVersion 16
         targetSdkVersion 30
         versionCode 1
