@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Care-it</string>
+    <string name="chose_image">Chose Image</string>
+    <string name="sign_up"><u>Sign Up</u></string>
+    <string name="instruction">Kindly upload an image of the damaged device or the device you would like installed in your residence and add a description</string>
+    <string name="location">Enter Your Location</string>
+    <string name="upload">Upload</string>
+    <string name="description">Description</string>
+</resources>
