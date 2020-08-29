@@ -106,7 +106,7 @@
             android:background="@drawable/buttonshape"
             android:text="@string/upload"
             android:textColor="@android:color/white"
-            android:textSize="18sp"
+            android:textSize="15sp"
             android:textStyle="bold"
             android:textAllCaps="false"
             />
