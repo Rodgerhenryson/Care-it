@@ -11,10 +11,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.material.textfield.TextInputEditText;
+
 public class RegisterActivity extends AppCompatActivity {
     TextView already_have_an_account;
     Button btnRegister;
-
+    //TextInputEditText password,email
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

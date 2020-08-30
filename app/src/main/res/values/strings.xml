@@ -21,4 +21,8 @@
     <string name="tech">Technician LogIn</string>
     <string name="your_history_request">Jobs Queue</string>
     <string name="your_queue_history_not_availbale">No Data For your Jobs Queue</string>
+    <string name="item_name">Hp Computer</string>
+    <string name="item_location">Nairobi West</string>
+    <string name="item_description">Discover a broad category of genuine HP Core i5 laptops online in Kenya. Enjoy the lowest prices when you shop on Jumia Kenya. Pay on delivery</string>
+    <string name="contact_owner">Contact Owner</string>
 </resources>
