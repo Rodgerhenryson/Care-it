@@ -1,13 +1,12 @@
 package com.rodgerskips.care_it.Models;
 
 public class User {
-    private String  email,name,phone,password;
+    private String  email,name,phone;
 
-    public User(String string, String email, String name) {
+    public User(String email, String name, String phone,String password) {
         this.email = email;
         this.name = name;
         this.phone = phone;
-        this.password = password;
     }
 
     public String getEmail() {
@@ -34,11 +33,4 @@ public class User {
         this.phone = phone;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }

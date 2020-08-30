@@ -180,10 +180,12 @@ public class RegisterActivity extends AppCompatActivity {
                     //getting the user from the response
                     JSONObject userJson = obj.getJSONObject("user");
                     //creating a new user object
+                    //creating a new user object
                     User user = new User(
                             userJson.getString("email"),
                             userJson.getString("name"),
-                            userJson.getString("phone")
+                            userJson.getString("phone"),
+                            userJson.getString("password")
                     );
                     //storing the user in shared preferences
                     PrefManager.getInstance(getApplicationContext()).setUserLogin(user);

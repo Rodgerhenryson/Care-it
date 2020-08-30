@@ -133,7 +133,8 @@ public class LogInActivity extends AppCompatActivity {
                     User user = new User(
                             userJson.getString("email"),
                             userJson.getString("name"),
-                            userJson.getString("phone")
+                            userJson.getString("phone"),
+                            userJson.getString("password")
                     );
 
                     //storing the user in shared preferences
@@ -166,62 +167,3 @@ public class LogInActivity extends AppCompatActivity {
 
     }
 }
-//public class LogInActivity extends AppCompatActivity {
-//    Button login_button;
-//    TextView register;
-//
-//    EditText editTextEmail,editTextPassword;
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_log_in);
-//        PrefManager prefManager = PrefManager.getInstance(LogInActivity.this);
-//
-//        ActionBar actionBar = getSupportActionBar();
-//        if (actionBar != null) {
-//            actionBar.setDisplayHomeAsUpEnabled(true);
-//            getSupportActionBar().setTitle(R.string.app_name);
-//        }
-//
-//        editTextEmail=findViewById(R.id.editTextEmail);
-//        editTextPassword=findViewById(R.id.editTextPassword);
-//
-//        login_button=findViewById(R.id.logIn_button);
-//        register=findViewById(R.id.sign_up_text);
-//        login_button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view)
-//            {
-//                startActivity(new Intent(LogInActivity.this, CustomerHistoryActivity.class));
-//            }
-//        });
-//
-//        register.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent=new Intent(LogInActivity.this, RegisterActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-//
-//
-//
-//
-//    }
-//
-//
-//
-//    public boolean onOptionsItemSelected(MenuItem item){
-//        switch (item.getItemId()) {
-//            case android.R.id.home:
-//                finish();
-//                return true;
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
-//
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        return true;
-//    }
-//}
