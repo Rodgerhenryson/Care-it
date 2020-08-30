@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:background="@android:color/white"
     android:layout_height="match_parent"
-    tools:context=".LogInActivity">
+    android:orientation="vertical"
+    tools:context=".activities.LogInActivity">
 
     <LinearLayout
         android:orientation="vertical"
@@ -21,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="100dp"/>
         <TextView
-            android:text="@string/mobile_number"
+            android:text="@string/email"
             android:textSize="18sp"
             android:textColor="@color/secondary_text_light"
             android:layout_margin="10dp"
@@ -30,7 +31,7 @@
 
 
             <EditText
-                android:id="@+id/username"
+                android:id="@+id/editTextEmail"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:textSize="16sp"
@@ -39,7 +40,7 @@
                 android:textColor="@android:color/black"
                 android:layout_gravity="center_horizontal"
                 android:gravity="center"
-                android:inputType="number"/>
+                android:inputType="textEmailAddress"/>
         <TextView
             android:text="@string/password"
             android:textSize="18sp"
@@ -50,7 +51,7 @@
 
 
             <EditText
-                android:id="@+id/password"
+                android:id="@+id/editTextPassword"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_margin="10dp"
@@ -83,6 +84,12 @@
             android:textColor="@android:color/black"
             android:gravity="center_horizontal" />
 
-
+        <ProgressBar
+            android:visibility="gone"
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true" />
     </LinearLayout>
-</ScrollView>
+</RelativeLayout>

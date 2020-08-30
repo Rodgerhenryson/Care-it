@@ -1,8 +1,10 @@
-package com.rodgerskips.care_it;
+package com.rodgerskips.care_it.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.rodgerskips.care_it.R;
 
 public class MainActivity extends AppCompatActivity {
 

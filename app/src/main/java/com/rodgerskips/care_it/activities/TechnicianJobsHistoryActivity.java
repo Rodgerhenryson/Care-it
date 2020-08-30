@@ -1,42 +1,30 @@
-package com.rodgerskips.care_it;
+package com.rodgerskips.care_it.activities;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 
-public class TechnicianLoginActivity extends AppCompatActivity {
-    private Button technician_logIn_button;
+import com.rodgerskips.care_it.R;
+
+public class TechnicianJobsHistoryActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_technician_login);
-        technician_logIn_button=findViewById(R.id.technician_logIn_button);
+        setContentView(R.layout.activity_technician_jobs_history);
 
-        technician_logIn_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view)
-            {
-                startActivity(new Intent(TechnicianLoginActivity.this,TechnicianJobsHistoryActivity.class));
-            }
-        });
-
-
-
-
-
+        //back press toolbar
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setTitle(R.string.tech);
+            getSupportActionBar().setTitle(R.string.your_history_request);
         }
+
     }
+    //back press toolbar
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()) {
             case android.R.id.home:
@@ -49,4 +37,5 @@ public class TechnicianLoginActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         return true;
     }
+
 }

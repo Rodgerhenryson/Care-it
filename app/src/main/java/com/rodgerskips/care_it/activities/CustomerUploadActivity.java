@@ -1,4 +1,4 @@
-package com.rodgerskips.care_it;
+package com.rodgerskips.care_it.activities;
 
 
 import androidx.annotation.Nullable;
@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
+import com.rodgerskips.care_it.R;
 
 public class CustomerUploadActivity extends AppCompatActivity {
     EditText description,add_location;

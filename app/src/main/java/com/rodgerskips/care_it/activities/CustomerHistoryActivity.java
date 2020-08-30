@@ -1,4 +1,4 @@
-package com.rodgerskips.care_it;
+package com.rodgerskips.care_it.activities;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.rodgerskips.care_it.R;
 
 public class CustomerHistoryActivity extends AppCompatActivity {
     private FloatingActionButton floatingActionButton;
@@ -31,7 +32,7 @@ public class CustomerHistoryActivity extends AppCompatActivity {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(CustomerHistoryActivity.this,CustomerUploadActivity.class);
+                Intent intent=new Intent(CustomerHistoryActivity.this, CustomerUploadActivity.class);
                 startActivity(intent);
             }
         });
