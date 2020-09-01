@@ -68,13 +68,7 @@ public class RegisterActivity extends AppCompatActivity {
 
 
 
-        btnRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(RegisterActivity.this, CustomerHistoryActivity.class);
-                startActivity(intent);
-            }
-        });
+
     }
 
     private void registerUser() {
