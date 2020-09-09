@@ -1,5 +1,12 @@
 <resources>
     <string name="app_name">Care-it</string>
+
+
+    //initial splash
+    <string name="splash_button1">Join Now</string>
+    <string name="splash_button2">Already have an Account? Login</string>
+
+
     <string name="chose_image">Chose Image</string>
     <string name="sign_up"><u>Don\'t Have Account? Sign Up</u></string>
     <string name="instruction">Kindly upload an image of the damaged device or the device you would like installed in your residence and add a description</string>
