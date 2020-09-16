@@ -6,4 +6,7 @@
     <color name="secondary_text_light">#474444</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
+    <color name="statusbar">#020C40</color>
+    <color name="techhome">#054A44</color>
+    <color name="login">#020C40</color>
 </resources>

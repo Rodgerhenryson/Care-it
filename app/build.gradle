@@ -20,6 +20,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
@@ -27,11 +31,30 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
     implementation 'com.google.android.material:material:1.2.0'
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
+    implementation 'com.google.android.gms:play-services-gcm:17.0.0'
+    implementation 'com.google.android.gms:play-services-location:17.0.0'
+    implementation 'com.google.android.gms:play-services-places:17.0.0'
+    implementation 'com.google.android.gms:play-services-auth:17.0.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation 'com.android.support:design:30.0.2'
     implementation 'com.github.bumptech.glide:glide:4.11.0'
+
+    //alertdialog
+    //implementation 'com.github.Shashank02051997:FancyAlertDialog-Android:0.1'
+
+    //fancytoast
+    implementation 'com.github.Shashank02051997:FancyToast-Android:0.1.6'
+
+
+    //remember me
+    implementation 'io.paperdb:paperdb:2.6'
+    //circle imageview
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
+
+    implementation 'com.android.volley:volley:1.1.1'
 
 
 }

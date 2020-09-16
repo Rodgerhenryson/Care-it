@@ -1,7 +1,6 @@
 package com.rodgerskips.care_it.activities;
 
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -11,6 +10,9 @@ import android.view.View;
 import android.widget.Button;
 
 import com.rodgerskips.care_it.R;
+import com.rodgerskips.care_it.constants.PrefManager;
+import com.rodgerskips.care_it.customer.home.CustomerHomeActivity;
+import com.rodgerskips.care_it.technician.home.TechnicianHomeActivity;
 import com.rodgerskips.care_it.utils.Utils;
 
 public class InitialActivity extends AppCompatActivity {
@@ -23,7 +25,13 @@ public class InitialActivity extends AppCompatActivity {
         setContentView(R.layout.activity_initial);
         Utils.SetStatusBar(this);
 
-
+if (PrefManager.getInstance(this).isLoggedIn()){
+    if (PrefManager.getInstance(this).getAccoutntType().equals("customer")){
+        startActivity(new Intent(this, CustomerHomeActivity.class));
+    }else {
+        startActivity(new Intent(this, TechnicianHomeActivity.class));
+    }
+}
 
 
     }

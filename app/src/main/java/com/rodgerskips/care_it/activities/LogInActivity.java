@@ -1,10 +1,13 @@
 package com.rodgerskips.care_it.activities;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Menu;
@@ -32,10 +35,14 @@ public class LogInActivity extends AppCompatActivity {
 
     EditText editTextEmail, editTextPassword;
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
+        getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.login));
+        getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.login));
+
         PrefManager prefManager = PrefManager.getInstance(LogInActivity.this);
 
         ActionBar actionBar = getSupportActionBar();
@@ -97,73 +104,12 @@ public class LogInActivity extends AppCompatActivity {
             editTextPassword.requestFocus();
             return;
         }
-        //if everything is fine
-        UserLogin ul = new UserLogin(email,password);
-        ul.execute();
+
     }
-    class UserLogin extends AsyncTask<Void, Void, String> {
-        ProgressBar progressBar;
-        String email, password;
-        UserLogin(String email,String password) {
-            this.email = email;
-            this.password = password;
-        }
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            progressBar = findViewById(R.id.progressBar);
-            progressBar.setVisibility(View.VISIBLE);
-        }
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-            progressBar.setVisibility(View.GONE);
-            try {
-                //converting response to json object
-                JSONObject obj = new JSONObject(s);
 
-                //if no error in response
-                if (!obj.getBoolean("error")) {
-                    Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
+    public void technicianLogin(View view) {
+    }
 
-                    //getting the user from the response
-                    JSONObject userJson = obj.getJSONObject("user");
-
-                    //creating a new user object
-                    User user = new User(
-                            userJson.getString("email"),
-                            userJson.getString("name"),
-                            userJson.getString("phone"),
-                            userJson.getString("password")
-                    );
-
-                    //storing the user in shared preferences
-                    PrefManager.getInstance(getApplicationContext()).setUserLogin(user);
-
-                    //starting the profile activity
-                    finish();
-                    startActivity(new Intent(getApplicationContext(), CustomerHistoryActivity.class));
-                } else {
-                    Toast.makeText(getApplicationContext(), "Invalid username or password", Toast.LENGTH_SHORT).show();
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-
-        @Override
-        protected String doInBackground(Void... voids) {
-            //creating request handler object
-            RequestHandler requestHandler = new RequestHandler();
-
-            //creating request parameters
-            HashMap<String, String> params = new HashMap<>();
-            params.put("email", email);
-            params.put("password", password);
-
-            //returing the response
-            return requestHandler.sendPostRequest(URLS.URL_LOGIN, params);
-        }
-
+    public void AdminLogin(View view) {
     }
 }

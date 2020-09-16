@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/vet_nav_home"
+            android:icon="@drawable/ic_home"
+            android:title="Home"/>
+        <item android:id="@+id/vet_nav_animal"
+            android:icon="@drawable/ic_calendar"
+            android:title="tech menu 1"/>
+        <item android:id="@+id/vet_nav_vet2"
+            android:icon="@drawable/ic_history"
+            android:title="tech menu 2"/>
+    </group>
+
+    <item android:title="Communicated.">
+        <menu>
+            <item android:id="@+id/vet_nav_share"
+                android:icon="@drawable/ic_share"
+                android:title="Share"/>
+            <item android:id="@+id/vet_nav_send"
+                android:icon="@drawable/ic_send"
+                android:title="Send"/>
+        </menu>
+    </item>
+
+</menu>
