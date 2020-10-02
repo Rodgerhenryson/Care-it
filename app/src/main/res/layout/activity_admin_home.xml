@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context=".Admin.home.AdminHomeActivity">
+
+    <com.rodgerskips.care_it.Ui.StatusBarView
+        android:id="@+id/status_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/adminhome" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/admin_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/adminhome"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/admin_drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:openDrawer="start">
+
+        <FrameLayout
+            android:id="@+id/admin_fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            />
+
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/nav_view_admin"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            app:headerLayout="@layout/admin_nav_header"
+            app:menu="@menu/admin_drawer_menu"
+            app:itemTextColor="@color/state_list"/>
+
+    </androidx.drawerlayout.widget.DrawerLayout>
+
+</LinearLayout>

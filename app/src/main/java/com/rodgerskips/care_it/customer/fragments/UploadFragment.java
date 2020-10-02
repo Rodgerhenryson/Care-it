@@ -142,7 +142,7 @@ public class UploadFragment extends Fragment implements OnMapReadyCallback {
 
     private void UploadPhoto() {
         String name = editTextName.getText().toString().trim();
-        String locationtxt = editTextName.getText().toString().trim();
+        String locationtxt = locationedt.getText().toString().trim();
 
 
         if (TextUtils.isEmpty(name) || TextUtils.isEmpty(locationtxt)) {
@@ -160,8 +160,9 @@ public class UploadFragment extends Fragment implements OnMapReadyCallback {
                             loading.dismiss();
                             //Showing toast message of the response
                             //Toast.makeText(MainActivity.this, s , Toast.LENGTH_LONG).show();
-                            PrefManager.Toast(getActivity(), s);
-                            Log.d("TAG", "onResponse: "+s);
+                            PrefManager.Toast(getActivity(), "Upload Added Successfully");
+                            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                                    new HistoryFragment()).commit();
                         }
                     },
                     new Response.ErrorListener() {
@@ -180,11 +181,16 @@ public class UploadFragment extends Fragment implements OnMapReadyCallback {
                     //Converting Bitmap to String
                     String image = getStringImage(bitmap);
 
-                    //Getting Image Name
-                    String lati = PrefManager.getInstance(getActivity()).getLat();
-                    String longi = PrefManager.getInstance(getActivity()).getLat();
-
-                    String username = PrefManager.getInstance(getActivity()).getUser().getName();
+                    String lati="";
+                    String longi="";
+                    if(PrefManager.getInstance(getActivity()).getLat()==null || PrefManager.getInstance(getActivity()).getLong()==null) {
+                        lati = "00000";
+                        longi = "00000";
+                    } else {
+                        longi = PrefManager.getInstance(getActivity()).getLong();
+                        lati = PrefManager.getInstance(getActivity()).getLat();
+                    }
+                    String username = PrefManager.getInstance(getActivity()).getUser().getEmail();
                     //Creating parameters
                     Map<String, String> params = new Hashtable<String, String>();
 
@@ -265,14 +271,22 @@ public class UploadFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        String lati = PrefManager.getInstance(getActivity()).getLat();
-        String longi = PrefManager.getInstance(getActivity()).getLong();
+        String lati="";
+        String longi="";
+        if(PrefManager.getInstance(getActivity()).getLat()==null || PrefManager.getInstance(getActivity()).getLong()==null) {
+            lati = "00000";
+            longi = "00000";
+        } else {
+            longi = PrefManager.getInstance(getActivity()).getLong();
+            lati = PrefManager.getInstance(getActivity()).getLat();
+        }
+      // Double vv1 = new Double(lati);
+       // Double vv2 = new Double(longi);
 
-        Double vv1 = new Double(lati);
-        Double vv2 = new Double(longi);
+
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(Double.parseDouble(lati),
-                vv2);
+                Double.parseDouble(longi));
         PrefManager.Toast(getActivity(), String.valueOf(lati + "  " + longi));
         Log.d("TAG", "onMapReady: " + v1);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));

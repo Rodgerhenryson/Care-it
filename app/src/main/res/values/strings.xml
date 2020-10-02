@@ -15,7 +15,7 @@
     <string name="description">Description</string>
     <string name="mobile_number">Mobile Number</string>
     <string name="password">Password</string>
-    <string name="login">Login</string>
+    <string name="login">Customer login</string>
     <string name="upload_item">Upload Item</string>
     <string name="your_history">Your History List</string>
     <string name="add_new_item">Add New Item</string>
@@ -24,7 +24,7 @@
     <string name="already_have_an_account">Already Have An Account</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="phone">Phone</string>
-    <string name="email">Phone</string>
+    <string name="email">Email</string>
     <string name="tech">Technician LogIn</string>
     <string name="your_history_request">Jobs Queue</string>
     <string name="your_queue_history_not_availbale">No Data For your Jobs Queue</string>
@@ -36,4 +36,22 @@
     <string name="navigation_drawer_open">Open navigtion drawer</string>
     <string name="navigation_drawer_close">close navigtion drawer</string>
     <string name="title_activity_maps">Map</string>
+
+    <string name="short_lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</string>
+    <string name="no_data_found">No data found!!</string>
+    <string name="tap_to_rate">Tap to Rate</string>
+    <string name="detail_location">Distance</string>
+    <string name="rating">Rate &amp; Reviews</string>
+
+    <string name="rating_title">Your Message :-</string>
+    <string name="write_here">Write Here</string>
+    <string name="submit1">Submit</string>
+    <string name="require_review">Add review</string>
+
+    <string name="dialog_error">Error...</string>
+    <string name="dialog_warning">Warning...</string>
+    <string name="dialog_success">Success</string>
+    <string name="dialog_ok">OK</string>
+    <string name="dialog_no">NO</string>
+    <string name="login_require">Login require click OK and go to login screen</string>
 </resources>

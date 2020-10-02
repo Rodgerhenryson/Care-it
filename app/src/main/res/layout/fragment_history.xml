@@ -8,14 +8,23 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/recyclerView_history"
         android:layout_width="match_parent"
         android:layout_margin="10dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"/>
+        android:layout_height="wrap_content"/>
 
 
-
+<TextView
+    android:id="@+id/history_nothing_found"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:textColor="@color/colorPrimary"
+    android:text="No Histories Yet. Click on Add to Upload"
+    android:textSize="30sp"
+    android:visibility="gone"
+    android:textAlignment="center"
+    android:layout_margin="15dp"
+    android:gravity="center"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floating_action_button"
@@ -24,6 +33,7 @@
         android:layout_gravity="bottom|right"
         android:layout_margin="16dp"
         android:clickable="true"
+        android:visibility="gone"
         android:contentDescription="@string/upload_item"
         android:src="@drawable/fab_add"
         android:tint="@color/design_default_color_on_primary"

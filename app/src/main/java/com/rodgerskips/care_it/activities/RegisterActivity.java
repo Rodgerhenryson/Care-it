@@ -154,15 +154,9 @@ public class RegisterActivity extends AppCompatActivity {
                         Log.d("TAG", "onResponsejson: " + response);
 
                         if (response.equals("registered successfully!")) {
-                            User user = new User(email, name, phone, password);
+                            Utils.ShowToast(RegisterActivity.this, name+", your account was created succesfully");
+                            startActivity(new Intent(RegisterActivity.this, LogInActivity.class));
 
-                            PrefManager.getInstance(RegisterActivity.this).setUserLogin(user);
-                            PrefManager.getInstance(RegisterActivity.this).setAccountType(dbName);
-                            if (dbName.equals("customer")){
-                                startActivity(new Intent(RegisterActivity.this,MainActivity.class));
-                            }else{
-                                startActivity(new Intent(RegisterActivity.this,MainActivity.class));
-                            }
                         } else {
                             Utils.ShowToast(RegisterActivity.this, response);
                         }

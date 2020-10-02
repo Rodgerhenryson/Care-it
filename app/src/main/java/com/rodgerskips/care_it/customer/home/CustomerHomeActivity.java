@@ -28,6 +28,7 @@ import com.rodgerskips.care_it.customer.fragments.UploadFragment;
 
 public class CustomerHomeActivity extends AppCompatActivity {
     private DrawerLayout drawer;
+    Toolbar toolbar;
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +36,7 @@ public class CustomerHomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_customer_home);
         getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
 
-        Toolbar toolbar=findViewById(R.id.toolbar);
+        toolbar=findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitle("Customer Home");
 
@@ -63,22 +64,26 @@ public class CustomerHomeActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem Item) {
                 switch (Item.getItemId()) {
                     case R.id.user_nav_home:
+                        toolbar.setTitle("Home");
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                                 new HomeFragment()).commit();
 
                         break;
                     case R.id.user_nav_upload:
+                        toolbar.setTitle("Create New Upload");
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                                 new UploadFragment()).commit();
 
                         break;
                     case R.id.user_nav_history:
+                        toolbar.setTitle("Upload History");
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                                 new HistoryFragment()).commit();
 
                         break;
 
                     case R.id.user_nav_profile:
+                        toolbar.setTitle("Edit profile");
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                                 new ProfileFragment()).commit();
 

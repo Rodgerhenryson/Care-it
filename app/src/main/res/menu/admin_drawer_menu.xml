@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/admin_nav_home"
+            android:icon="@drawable/ic_home"
+            android:title="Home" />
+        <item
+            android:id="@+id/admin_nav_approve"
+            android:icon="@drawable/ic_validation"
+            android:title="Approve Technicians" />
+        <item
+            android:id="@+id/admin_nav_assign"
+            android:icon="@drawable/ic_assign"
+            android:title="Assign Uploads" />
+        <item
+            android:id="@+id/admin_nav_reports"
+            android:icon="@drawable/ic_reports"
+            android:title="View Reports" />
+        <item
+            android:id="@+id/admin_nav_users"
+            android:icon="@drawable/ic_person_black_24dp"
+            android:title="All Users" />
+        <item
+            android:id="@+id/admin_nav_signout"
+            android:icon="@drawable/ic_logout"
+            android:title="Signout" />
+    </group>
+
+    <item android:title="Communicated.">
+        <menu>
+            <item
+                android:id="@+id/admin_nav_share"
+                android:icon="@drawable/ic_share"
+                android:title="Share" />
+            <item
+                android:id="@+id/admin_nav_send"
+                android:icon="@drawable/ic_send"
+                android:title="Send" />
+        </menu>
+    </item>
+
+</menu>

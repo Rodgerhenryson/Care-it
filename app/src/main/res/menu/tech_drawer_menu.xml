@@ -5,15 +5,18 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
-        <item android:id="@+id/vet_nav_home"
+        <item android:id="@+id/tech_nav_home"
             android:icon="@drawable/ic_home"
             android:title="Home"/>
-        <item android:id="@+id/vet_nav_animal"
+        <item android:id="@+id/tech_nav_pendingjobs"
             android:icon="@drawable/ic_calendar"
-            android:title="tech menu 1"/>
-        <item android:id="@+id/vet_nav_vet2"
+            android:title="Pending Jobs"/>
+        <item android:id="@+id/tech_nav_completed"
             android:icon="@drawable/ic_history"
-            android:title="tech menu 2"/>
+            android:title="Completed Jobs"/>
+        <item android:id="@+id/customer_nav_signout"
+            android:icon="@drawable/ic_logout"
+            android:title="SignOut"/>
     </group>
 
     <item android:title="Communicated.">
