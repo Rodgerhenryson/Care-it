@@ -1,62 +1,72 @@
 package com.rodgerskips.care_it.activities;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Intent;
-import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.provider.SyncStateContract;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+
 import com.rodgerskips.care_it.Models.User;
 import com.rodgerskips.care_it.R;
+import com.rodgerskips.care_it.constants.Contants;
 import com.rodgerskips.care_it.constants.PrefManager;
 import com.rodgerskips.care_it.constants.RequestHandler;
-import com.rodgerskips.care_it.constants.URLS;
+import com.rodgerskips.care_it.utils.Utils;
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 public class RegisterActivity extends AppCompatActivity {
-    TextView already_have_an_account;
-    Button btnRegister;
-    EditText editTextEmail,editTextName,editTextPhone,editTextPassword;
+    TextView already_have_an_account, header;
+    Button btnRegister, btn_t, btn_c;
+    EditText editTextEmail, editTextName, editTextPhone, editTextPassword;
+    String dbName = "customer";
+    public static int confirmation = 0;
+    ProgressDialog progressDialog;
 
+    @SuppressLint("NewApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setTitle(R.string.app_name);
-        }
+        Utils.SetStatusBar(this);
+        getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.statusbar));
 
-        editTextEmail=findViewById(R.id.editTextEmail);
-        editTextName=findViewById(R.id.editTextName);
-        editTextPhone=findViewById(R.id.editTextPhone);
-        editTextPassword=findViewById(R.id.editTextPassword);
+        header = findViewById(R.id.register_header);
+        btn_c = findViewById(R.id.btn_customer);
+        btn_t = findViewById(R.id.btn_technician);
 
-        already_have_an_account=findViewById(R.id.already_have_an_account);
-        btnRegister=findViewById(R.id.btnRegister);
 
-        findViewById(R.id.btnRegister).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                registerUser();
-            }
-        });
+        editTextEmail = findViewById(R.id.editTextEmail);
+        editTextName = findViewById(R.id.editTextName);
+        editTextPhone = findViewById(R.id.editTextPhone);
+        editTextPassword = findViewById(R.id.editTextPassword);
+
+        already_have_an_account = findViewById(R.id.already_have_an_account);
+        btnRegister = findViewById(R.id.btnRegister);
+
 
         findViewById(R.id.already_have_an_account).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,11 +77,29 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
 
+    }
+
+
+    public void registertechnician(View view) {
+        dbName = "technician";
+        btnRegister.setText("Register as technician");
+        header.setText("Technician registration");
+        btn_c.setVisibility(View.VISIBLE);
+        btn_t.setVisibility(View.GONE);
 
 
     }
 
-    private void registerUser() {
+    public void customerregister(View view) {
+        dbName = "customer";
+        btnRegister.setText("Register as customer");
+        header.setText("Customer registration");
+        btn_c.setVisibility(View.GONE);
+        btn_t.setVisibility(View.VISIBLE);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    public void Signup(View view) {
         final String email = editTextEmail.getText().toString().trim();
         final String name = editTextName.getText().toString().trim();
         final String phone = editTextPhone.getText().toString().trim();
@@ -107,91 +135,67 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
-        //if it passes all the validations
-        //executing the async task
-        RegisterUser ru = new RegisterUser(email,name,phone,password);
-        ru.execute();
-    }
-
-    public boolean onOptionsItemSelected(MenuItem item){
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                finish();
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    public boolean onCreateOptionsMenu(Menu menu) {
-        return true;
+        ValidateCredentials(dbName, email, name, phone, password);
     }
 
 
-    private class RegisterUser extends AsyncTask<Void, Void, String> {
-        private ProgressBar progressBar;
-        private String email,name,phone,password;
-        RegisterUser(String email,String name,String phone, String password){
-            this.email = email;
-            this.name = name;
-            this.phone = phone;
-            this.password = password;
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    private void ValidateCredentials(final String dbName, final String email, final String name, final String phone, final String password) {
 
-        }
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            progressBar = findViewById(R.id.progressBar);
-            progressBar.setVisibility(View.VISIBLE);
-        }
-        @Override
-        protected String doInBackground(Void... voids) {
-            //creating request handler object
-            RequestHandler requestHandler = new RequestHandler();
+        showProgressDialog();
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,
+                Contants.URL_REGISTER,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        progressDialog.dismiss();
 
-            //creating request parameters
-            HashMap<String, String> params = new HashMap<>();
-            params.put("email", email);
-            params.put("name", name);
-            params.put("phone", phone);
-            params.put("password", password);
+                        //JSONObject jsonObject = new JSONObject(response);
+                        Log.d("TAG", "onResponsejson: " + response);
 
-            //returing the response
-            return requestHandler.sendPostRequest(URLS.URL_REGISTER, params);
-        }
+                        if (response.equals("registered successfully!")) {
+                            Utils.ShowToast(RegisterActivity.this, name+", your account was created succesfully");
+                            startActivity(new Intent(RegisterActivity.this, LogInActivity.class));
 
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-            Log.i("SignUp","sfdsds : "+s);
-            //hiding the progressbar after completion
-            progressBar.setVisibility(View.GONE);
-            try {
-                //converting response to json object
-                JSONObject obj = new JSONObject(s);
-                //if no error in response
-                if (!obj.getBoolean("error")) {
-                    Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
-                    //getting the user from the response
-                    JSONObject userJson = obj.getJSONObject("user");
-                    //creating a new user object
-                    //creating a new user object
-                    User user = new User(
-                            userJson.getString("email"),
-                            userJson.getString("name"),
-                            userJson.getString("phone"),
-                            userJson.getString("password")
-                    );
-                    //storing the user in shared preferences
-                    PrefManager.getInstance(getApplicationContext()).setUserLogin(user);
-                    //starting the profile activity
-                    finish();
-                    startActivity(new Intent(getApplicationContext(), CustomerHistoryActivity.class));
-                } else {
-                    Toast.makeText(getApplicationContext(), "Some error occurred", Toast.LENGTH_SHORT).show();
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
+                        } else {
+                            Utils.ShowToast(RegisterActivity.this, response);
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        progressDialog.hide();
+                        Log.d("TAG", "onResponsejsoneror: " + error.getMessage());
+                        Utils.ShowToast(RegisterActivity.this, String.valueOf(error.getMessage()));
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("table", dbName);
+                params.put("username", name);
+                params.put("email", email);
+                params.put("phone", phone);
+                params.put("password", password);
+                return params;
             }
-        }
+        };
+
+        RequestHandler.getInstance(this).addToRequestQueue(stringRequest);
+
+
     }
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    public void showProgressDialog() {
+        progressDialog = new ProgressDialog(this);
+        progressDialog.show();
+        progressDialog.setContentView(R.layout.progress_dialog);
+        progressDialog.setCanceledOnTouchOutside(false);
+        Objects.requireNonNull(progressDialog.getWindow()).setBackgroundDrawableResource(android.R.color.transparent);
+
+
+    }
+
 }
