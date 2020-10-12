@@ -56,6 +56,8 @@ public class AssignAdapter extends RecyclerView.Adapter<AssignAdapter.MyViewHold
     public void onBindViewHolder(@NonNull AssignAdapter.MyViewHolder holder, int position) {
         final History assign = historyArrayList.get(position);
         holder.name.setText(assign.getUser());
+        holder.details.setText("This Upload is Pending \nThe upload was created on  "+assign.getReg_date()+"\nThe Description of the upload wasn --> "+assign.getDescription()+"\n\n Please Assign a technitian.");
+
         holder.assign.setOnClickListener(v -> {
             Prevalent.currentUploadToAssign=assign;
             ChooseTech(assign.getUser(), assign.getDescription());

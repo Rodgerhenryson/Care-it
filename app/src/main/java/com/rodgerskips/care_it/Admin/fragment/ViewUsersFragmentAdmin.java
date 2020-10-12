@@ -139,7 +139,7 @@ public class ViewUsersFragmentAdmin extends Fragment {
         pDialog.show();
 
 
-        String urlForJsonObject = Contants.URL_USERS_API;
+        String urlForJsonObject = Contants.URL_TECH_API;
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET,
                 urlForJsonObject,
                 null,

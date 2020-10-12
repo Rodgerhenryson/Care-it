@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,7 +17,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.rodgerskips.care_it.Models.History;
 import com.rodgerskips.care_it.R;
 import com.rodgerskips.care_it.constants.PrefManager;
-import com.rodgerskips.care_it.customer.fragments.FragmentHistoryDetails;
 import com.rodgerskips.care_it.technician.fragments.TechDetailsFragment;
 
 import java.util.ArrayList;
@@ -25,20 +25,20 @@ import java.util.ArrayList;
  * Created by Kiduyu klaus
  * on 18/09/2020 12:40 2020
  */
-public class PendingAdapter extends RecyclerView.Adapter<PendingAdapter.MyViewHolder> {
+public class CompletedAdapter extends RecyclerView.Adapter<CompletedAdapter.MyViewHolder> {
 
     Context mcontext;
     ArrayList<History> historyArrayList;
 
 
-    public PendingAdapter(Context context, ArrayList<History> tList) {
+    public CompletedAdapter(Context context, ArrayList<History> tList) {
         this.historyArrayList = tList;
         this.mcontext = context;
     }
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new MyViewHolder(LayoutInflater.from(mcontext).inflate(R.layout.history_item, parent, false));
+        return new MyViewHolder(LayoutInflater.from(mcontext).inflate(R.layout.completed_item, parent, false));
     }
 
     @Override
@@ -51,16 +51,7 @@ public class PendingAdapter extends RecyclerView.Adapter<PendingAdapter.MyViewHo
         holder.edt_myappications_descri11.setText("An Upload to The Admin was set on "+model.getReg_date()+"\nThe Description of the upload was"+model.getDescription());
 
         Log.d("TAG", "onBindViewHolder: "+model.getImage());
-        holder.next.setOnClickListener(view ->
-
-                PassArguments(model.getUser(),model.getDescription(),
-                        model.getLocation(),
-                        model.getLatitude(),
-                        model.getLongitude(),
-                        model.getImage(),
-                        model.getReg_date(),
-                        model.getStatus(),model.getId())
-                );
+        holder.button.setText("Upload Status: "+model.getStatus());
 
 
     }
@@ -95,6 +86,7 @@ public class PendingAdapter extends RecyclerView.Adapter<PendingAdapter.MyViewHo
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView single_application_username, single_application_county, single_application_school, single_application_timeago, edt_myappications_descri11;
         ImageView single_application_image,next;
+        Button button;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -104,7 +96,8 @@ public class PendingAdapter extends RecyclerView.Adapter<PendingAdapter.MyViewHo
             single_application_school = itemView.findViewById(R.id.single_application_school);
             single_application_timeago = itemView.findViewById(R.id.single_application_timeago);
             edt_myappications_descri11 = itemView.findViewById(R.id.edt_myappications_descri11);
-            next = itemView.findViewById(R.id.view_more_arrow);
+            button = itemView.findViewById(R.id.compledstatus);
+
 
         }
     }

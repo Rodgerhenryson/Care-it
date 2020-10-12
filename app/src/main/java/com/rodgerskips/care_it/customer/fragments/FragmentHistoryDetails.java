@@ -130,26 +130,31 @@ public class FragmentHistoryDetails extends Fragment {
     }
 
     private void showRate() {
-        final String deviceId;
-        final Dialog mDialog = new Dialog(getActivity(), R.style.Theme_AppCompat_Translucent);
-        mDialog.setContentView(R.layout.rate_dialog);
-        final RatingView ratingView = mDialog.findViewById(R.id.ratingView);
-        ImageView image_rate_close = mDialog.findViewById(R.id.image_close);
-        final EditText editTextReview = mDialog.findViewById(R.id.edt_d_review);
-        ratingView.setRating(0);
-        Button button = mDialog.findViewById(R.id.btn_submit);
+       String status = "Pending";
+       if (status.equals("Pending")){
+           Toast.makeText(getActivity(), "Upload Not Completed, rating disabled", Toast.LENGTH_LONG).show();
+       } else {
+           final String deviceId;
+           final Dialog mDialog = new Dialog(getActivity(), R.style.Theme_AppCompat_Translucent);
+           mDialog.setContentView(R.layout.rate_dialog);
+           final RatingView ratingView = mDialog.findViewById(R.id.ratingView);
+           ImageView image_rate_close = mDialog.findViewById(R.id.image_close);
+           final EditText editTextReview = mDialog.findViewById(R.id.edt_d_review);
+           ratingView.setRating(0);
+           Button button = mDialog.findViewById(R.id.btn_submit);
 
-        image_rate_close.setOnClickListener(view -> mDialog.dismiss());
+           image_rate_close.setOnClickListener(view -> mDialog.dismiss());
 
-        button.setOnClickListener(v -> {
-            if (editTextReview.getText().length() == 0) {
-                Toast.makeText(getActivity(), getString(R.string.require_review), Toast.LENGTH_SHORT).show();
-            } else {
+           button.setOnClickListener(v -> {
+               if (editTextReview.getText().length() == 0) {
+                   Toast.makeText(getActivity(), getString(R.string.require_review), Toast.LENGTH_SHORT).show();
+               } else {
 
 
-                mDialog.dismiss();
-            }
-        });
-        mDialog.show();
+                   mDialog.dismiss();
+               }
+           });
+           mDialog.show();
+       }
     }
 }

@@ -12,6 +12,7 @@ public class Contants {
 
     public static final String URL_REGISTER = ROOT_URL + "registerUser.php";
     public static final String URL_LOGIN = ROOT_URL + "userLogin.php";
+    public static final String URL_UPDATE = ROOT_URL + "updateupload.php";
     public static final String URL_DECLINE = ROOT_URL + "declineapproval.php";
     public static final String URL_ACCEPT = ROOT_URL + "acceptapproval.php";
     public static final String URL_APPROVE_TECH = ROOT_URL + "approve_tech.php";

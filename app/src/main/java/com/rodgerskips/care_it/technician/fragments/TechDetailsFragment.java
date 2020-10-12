@@ -1,6 +1,7 @@
 package com.rodgerskips.care_it.technician.fragments;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,13 +18,29 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.bumptech.glide.Glide;
 import com.github.ornolfr.ratingview.RatingView;
+import com.rodgerskips.care_it.Admin.home.AdminHomeActivity;
 import com.rodgerskips.care_it.MapsActivity;
+import com.rodgerskips.care_it.Models.User;
 import com.rodgerskips.care_it.R;
 import com.rodgerskips.care_it.activities.LogInActivity;
 import com.rodgerskips.care_it.constants.Contants;
 import com.rodgerskips.care_it.constants.PrefManager;
+import com.rodgerskips.care_it.constants.RequestHandler;
+import com.rodgerskips.care_it.customer.home.CustomerHomeActivity;
+import com.rodgerskips.care_it.technician.home.TechnicianHomeActivity;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import libs.mjn.prettydialog.PrettyDialog;
 import libs.mjn.prettydialog.PrettyDialogCallback;
@@ -33,7 +50,7 @@ import libs.mjn.prettydialog.PrettyDialogCallback;
  * on 18/09/2020 13:51 2020
  */
 public class TechDetailsFragment extends Fragment {
-    String user,description,location,latitude,longitude,image,reg_date,status;
+    String user,id,description,location,latitude,longitude,image,reg_date,status;
     ImageView imageView;
     TextView date_tv,status_tv,description_tv,rate_tv,map_tv;
     @Nullable
@@ -42,6 +59,7 @@ public class TechDetailsFragment extends Fragment {
         View view =inflater.inflate(R.layout.fragment_details,container,false);
 
         user=getArguments().getString("user");
+        id=getArguments().getString("id");
         description=getArguments().getString("description");
         location=getArguments().getString("location");
         latitude=getArguments().getString("latitude");
@@ -56,6 +74,11 @@ public class TechDetailsFragment extends Fragment {
         date_tv=view.findViewById(R.id.text_details_title);
 
         date_tv.setText("Uploaded on: "+reg_date);
+
+        TextView srtCompleted = view.findViewById(R.id.text_details_complete);
+        srtCompleted.setOnClickListener(view1 -> {
+            setCompleted(id);
+        });
 
 
         imageView=view.findViewById(R.id.image_history_details);
@@ -77,7 +100,7 @@ public class TechDetailsFragment extends Fragment {
 
         Glide.with(getContext()).load(path).into(imageView);
 
-      /*  rate_tv.setOnClickListener(view1 -> {
+      rate_tv.setOnClickListener(view1 -> {
 
             if (PrefManager.getInstance(getActivity()).isLoggedIn()) {
                 showRate();
@@ -112,15 +135,53 @@ public class TechDetailsFragment extends Fragment {
                 dialog.setCancelable(false);
                 dialog.show();
             }
-        }); */
+        });
 
         return view;
+    }
+
+    private void setCompleted(String id) {
+        ProgressDialog progressDialog;
+        progressDialog = new ProgressDialog(getActivity());
+        progressDialog.setTitle("Updating");
+        progressDialog.setMessage("please Wait...");
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,
+                Contants.URL_UPDATE, response -> {
+                    progressDialog.dismiss();
+            Toast.makeText(getActivity(), "Upload completed successfully", Toast.LENGTH_SHORT).show();
+
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                progressDialog.dismiss();
+
+                Toast.makeText(
+                        getActivity(),
+                        error.getMessage(),
+                        Toast.LENGTH_LONG
+                ).show();
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("id", id);
+
+
+                return params;
+            }
+        };
+        RequestHandler.getInstance(getActivity()).addToRequestQueue(stringRequest);
     }
 
     private void startMaps() {
         Intent intent = new Intent(getActivity(), MapsActivity.class);
         intent.putExtra("lat",latitude);
         intent.putExtra("long",longitude);
+        intent.putExtra("from","techh");
         startActivity(intent);
     }
 
